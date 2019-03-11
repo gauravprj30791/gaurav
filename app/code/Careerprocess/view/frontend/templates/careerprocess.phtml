@@ -1,0 +1,59 @@
+<?php
+$collection = $block->getCareerProcess();
+?>
+<div class="career_process">
+<?php
+$j =1;
+foreach ($collection as $career_var) { ?>
+	<div class="content">
+		<div class="title"><h3><?php echo $career_var->getTitle(); ?></h3></div>
+		<div class="short_description"><?php echo $career_var->getShortDescription(); ?></div>
+		<div class="more_info"><a href="javascript:void(0);" class="click-me" id="<?php echo $j; ?>">More</a></div>
+	</div>
+<?php
+$j++;
+}
+?>
+</div>
+
+<?php
+$i=1;
+foreach ($collection as $career_var) { ?>
+	<div id="popup-mpdal-<?php echo $i; ?>" style="display:none;">
+		<div class="content">
+			<div class="title"><h3><?php echo $career_var->getTitle(); ?></h3></div>
+			<div class="description"><?php echo $career_var->getDescription(); ?></div>			
+		</div>
+	</div>
+<?php
+$i++;
+}
+?>
+
+
+<script>
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                buttons: []
+            };
+
+            
+            jQuery("a.click-me").on('click',function(){            	
+            var btn_id = jQuery(this).attr('id');            
+            var popup = modal(options, jQuery('#popup-mpdal-'+btn_id));            
+            jQuery("#popup-mpdal-"+btn_id).modal("openModal");               
+            });
+        }
+    );
+</script>

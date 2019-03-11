@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Digital_Categorytree::categorytree" title="Category Tree" module="Digital_Categorytree" sortOrder="41" resource="Digital_Categorytree::categorytree"/>
+        <add id="Digital_Categorytree::manage" title="Category Trees Configurations" module="Digital_Categorytree" sortOrder="10" action="adminhtml/system_config/edit/section/helloworld/" resource="Digital_Categorytree::manage" parent="Digital_Categorytree::categorytree"/>
+        
+    </menu>
+</config>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Digital_Careerprocess::parent" 
+			 title="Career Process" 
+			 module="Digital_Careerprocess" 
+			 sortOrder="20" 
+			 resource="Digital_Careerprocess::parent"
+			 />       
+		<add id="Digital_Careerprocess::careerprocess" title="Manage Career Process" module="Digital_Careerprocess" sortOrder="20" parent="Digital_Careerprocess::parent" action="careerprocess/careerprocess/index" resource="Digital_Careerprocess::careerprocess"/>
+		<!-- <add id="Digital_Careerprocess::settings" title="Configuration" module="Digital_Homebanner" sortOrder="30" parent="Digital_Homebanner::parent" action="adminhtml/system_config/edit/section/homebanner_section" resource="Digital_Homebanner::settings"/> -->
+    </menu>
+</config>

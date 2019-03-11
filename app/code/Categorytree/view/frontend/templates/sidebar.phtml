@@ -1,0 +1,92 @@
+<?php    
+$block->getEnableRootCategory();
+$categories = $block->getCategoriesAccord();
+$currentcat_id = $block->getCurrentCategory();
+/*$RootCategoryEnable = $block->getEnableRootCategory();
+$ParentCategoryEnable = $block->EnableParentCategory();*/
+$AllCategoryCollection = $block->getAllCategories();
+//var_dump($RootCategoryEnable);
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$Module_Enable = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('helloworld/categorytree/enable');
+$RootCategoryEnable = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('helloworld/categorytree/rootcategories');
+$ParentCategoryEnable = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('helloworld/categorytree/parentcategories');
+if($Module_Enable == 1){
+    if($RootCategoryEnable == 1){
+    ?>
+        <h3><?php echo __('Categories'); ?></h3>
+        <ul class="o-list">
+            <?php    
+            foreach ( $categories as $category_id ) :
+            	if($category_id != $currentcat_id){
+        	    	$catdata = $block->getCategoryName($category_id);
+        	    	if($catdata->getLevel() <= 4){
+        		        ?>
+        		        <li class="level-<?php echo $catdata->getLevel(); ?>">
+        		            <a href="<?php echo $catdata->getUrl(); ?>" title="<?php echo $catdata->getName(); ?>" class="active">
+        		                <?php echo $catdata->getName(); ?></a>                        
+        		        </li>
+        		    <?php
+        			}
+        		}
+            endforeach; ?>
+        </ul>
+        <?php
+        }
+        if($ParentCategoryEnable == 1){
+        $categories = $block->getCategories();
+        ?>
+        <div class="category-filter-area">
+            <div class="filter-heading">
+                <h3><?php echo __('Categories'); ?></h3>
+            </div>
+            <div class="category-filter">
+                <ul class="o-list">
+                    <?php
+                    // Loop through categories
+                    foreach ( $categories as $category ) {
+                        ?>
+                        <li class="level0">
+                            <a href="<?php echo $block->getCategoryUrl($category); ?>" title="<?php echo $category->getName(); ?>">
+                                <?php echo $category->getName(); ?>
+                            </a>
+                            <?php if ( $category->hasChildren() ) { ?>
+                                <span class="expand"><i class="fa fa-plus"></i></span>
+                            <?php } ?>
+
+                            <?php echo $block->getChildCategoryView($category, $html = '', $level = $category->getLevel() + 1); ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div> 
+        <script type="text/javascript">
+        	require(['jquery'], function ($) {
+            $(function () {
+                $('.sidebar').on('click', '.o-list .expand, .o-list .expanded', function () {
+                    var element = $(this).parent('li');
+
+                    if (element.hasClass('active')) {
+                        element.find('ul').slideUp();
+
+                        element.removeClass('active');
+                        element.find('li').removeClass('active');
+
+                        element.find('i').removeClass('fa-minus').addClass('fa-plus');
+                    } else {
+                        element.children('ul').slideDown();
+                        element.siblings('li').children('ul').slideUp();
+                        element.parent('ul').find('i').removeClass('fa-minus').addClass('fa-plus');
+                        element.find('> span i').removeClass('fa-plus').addClass('fa-minus');
+
+                        element.addClass('active');
+                        element.siblings('li').removeClass('active');
+                        element.siblings('li').find('li').removeClass('active');
+                        element.siblings('li').find('ul').slideUp();
+                    }
+                });
+            });
+        });
+        </script>
+    <?php } 
+}
+?>

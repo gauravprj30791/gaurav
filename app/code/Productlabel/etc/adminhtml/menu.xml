@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<add id="Digital_Productlabel::labels" title="Product Labels" module="Digital_Productlabel" sortOrder="51" resource="Digital_Productlabel::labels"/>
+        <add id="Digital_Productlabel::manage" title="Product Labels" translate="title" module="Digital_Productlabel"
+             sortOrder="10" parent="Digital_Productlabel::labels" resource="Digital_Productlabel::labels" />     
+        <add id="Digital_Productlabel::image"
+             title="Manage Labels"
+             module="Digital_Productlabel"
+             sortOrder="75" resource="Digital_Productlabel::image"
+             action="sampleimageuploader/image/index" parent="Digital_Productlabel::labels"/>
+    </menu>
+</config>
