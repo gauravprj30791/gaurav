@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <referenceContainer name="content">
+ -->
+ <body>
+ 	<referenceBlock name="category.image" remove="true"/>
+      <referenceContainer name="columns.top">
+          <block class="Gaurav\Imageresize\Block\Product\ListProduct" name="bannerslider.catalog.top" template="Gaurav_Imageresize::category/products.phtml" before="-">              
+          </block>
+      </referenceContainer>
+  </body>
