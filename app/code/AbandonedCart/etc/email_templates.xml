@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Ktpl_Abandonedcart Magento JS component
+ *
+ * @category    Ktpl
+ * @package     Ktpl_Abandonedcart
+ * @author      Ktpl Team <info@Ktpl.com>
+ * @copyright   Ktpl (http://Ktpl.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="abandonedcart_general_template1" label="First Abandoned Cart" file="abandoned_cart_mail_1.html" type="html" module="Ktpl_AbandonedCart" area="adminhtml"/>    
+</config>
